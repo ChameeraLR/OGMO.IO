@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta property="og:title" content="OGMO" />
+  <meta property="og:description" content="Building infrastructure of the open metaverse">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>OGMO</title>
+  <link rel="shortcut icon" type="image/jpg" href="images/favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      width: 100vw;
+      min-height: 100vh;
+      font-family: 'Bungee', cursive;
+      margin: 0;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+    }
+
+    h1 {
+      color: #ffffff;
+      margin: 0;
+      font-size: 3.9vw;
+    }
+
+    a {
+      text-decoration: none;
+      font-size: 2vw;
+    }
+
+    .text_gray {
+      color: #cccccc;
+    }
+
+    .container {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .text_container {
+      text-align: center;
+    }
+
+    .text_container_main {
+      width: 85%;
+    }
+
+    .text_container_bottom {
+      width: 75%;
+      margin-top: 4%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .timer_container {
+      margin-top: 4%;
+      display: flex;
+    }
+
+    .timer_label {
+      font-size: 1.5vw;
+      margin-bottom: 0;
+    }
+
+    .timer_section {
+      width: 6vw;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="text_container text_container_main">
+      <h1>“We are on stealth mode, building</h1>
+      <h1>the interactive infrastructure </h1>
+      <h1>fabric of the Open Metaverse”</h1>
+    </div>
+    <div class="text_container_bottom">
+      <div>
+        <h1 class="text_gray">| TEAM OGMO</h1>
+        <a class="text_gray" href="mailto:hello@ogmo.io">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HELLO@OGMO.IO</a>
+      </div>
+    </div>
+    <div class="timer_container">
+      <div class="timer_section">
+        <h1 id="timer_days">60</h1>
+        <h2 class="timer_label">DAYS</h2>
+      </div>
+      <div>
+        <h1>&nbsp;:&nbsp;</h1>
+      </div>
+      <div class="timer_section">
+        <h1 id="timer_hours">12</h1>
+        <h2 class="timer_label">HOURS</h2>
+      </div>
+      <div>
+        <h1>&nbsp;:&nbsp;</h1>
+      </div>
+      <div class="timer_section">
+        <h1 id="timer_minutes">12</h1>
+        <h2 class="timer_label">MINUTES</h2>
+      </div>
+      <div>
+        <h1>&nbsp;:&nbsp;</h1>
+      </div>
+      <div class="timer_section">
+        <h1 id="timer_seconds">12</h1>
+        <h2 class="timer_label">SECONDS</h2>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    const deadline = new Date("Apr 1, 2022 20:00:00").getTime();
+    const oneDay = 24 * 60 * 60 * 1000;
+
+    setInterval(() => {
+      const now = Date.now();
+      const delta = new Date(deadline - now);
+
+      const daysSpan = Math.round(Math.abs((deadline - now) / oneDay));
+      const hoursSpan = delta.getUTCHours();
+      const minutesSpan = delta.getUTCMinutes();
+      const secondsSpan = delta.getUTCSeconds();
+
+      document.getElementById("timer_days").innerHTML = daysSpan < 10? "0" + daysSpan: daysSpan;
+      document.getElementById("timer_hours").innerHTML = hoursSpan < 10? "0" + hoursSpan: hoursSpan;
+      document.getElementById("timer_minutes").innerHTML = minutesSpan < 10? "0" + minutesSpan: minutesSpan;
+      document.getElementById("timer_seconds").innerHTML = secondsSpan < 10? "0" + secondsSpan: secondsSpan;
+    }, 1000);
+
+    
+  </script>
+</body>
+
+</html>
