@@ -1,0 +1,68 @@
+variables:
+
+  # Docker images
+  PYTHON_NODEJS: "nikolaik/python-nodejs:python3.9-nodejs14"
+
+  OGMO_IO_URL: "https://ogmo.io/"
+
+  DEV_OGMO_IO_URL: "https://dev.ogmo.io/"
+
+stages:
+  - deploy
+  - verify
+
+## Prod environment
+
+ogmo-io:
+  stage: deploy
+  image: $PYTHON_NODEJS
+  script:
+    - echo "Deploy ogmo-io"
+    - CI=false
+    - curl -X POST "https://api.vercel.com/v1/integrations/deploy/prj_oKClD6SMLZD0PRIGV0XSOe90RIot/6B9lsV6TLm"
+    # below part will handle in vercel
+    - echo "deploying in vercerl wait few more minutes"
+    - echo "completed"
+  environment:
+    name: Ogmo Io
+    url: $OGMO_IO_URL
+  only:
+    - main
+  needs: []
+
+verify-ogmo-io:
+  stage: verify
+  script:
+    - echo "verify ogmo-io"
+    - curl -sL -w "%{http_code}\\n" "$OGMO_IO_URL" -o /dev/null
+  only:
+    - main
+  needs: [ogmo-io]
+
+## Dev environment
+
+dev-ogmo-io:
+  stage: deploy
+  #image: $PYTHON_NODEJS
+  script:
+    - echo "Deploy dev-ogmo-io"
+    - CI=false
+    - curl -X POST "https://api.vercel.com/v1/integrations/deploy/prj_oKClD6SMLZD0PRIGV0XSOe90RIot/vDH6A4N0Hy"
+    # below part will handle in vercel
+    - echo "deploying in vercerl wait few more minutes"
+    - echo "completed"
+  environment:
+    name: Dev Ogmo Io
+    url: $DEV_OGMO_IO_URL
+  only:
+    - dev
+  needs: []
+
+verify-dev-ogmo-io:
+  stage: verify
+  script:
+    - echo "verify ogmo-io"
+    - curl -sL -w "%{http_code}\\n" "$DEV_OGMO_IO_URL" -o /dev/null
+  only:
+    - dev
+  needs: [dev-ogmo-io]
