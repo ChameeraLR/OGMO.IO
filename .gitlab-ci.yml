@@ -1,8 +1,5 @@
 variables:
 
-  # Docker images
-  PYTHON_NODEJS: "nikolaik/python-nodejs:python3.9-nodejs14"
-
   OGMO_IO_URL: "https://ogmo.io/"
 
   DEV_OGMO_IO_URL: "https://dev.ogmo.io/"
@@ -15,7 +12,6 @@ stages:
 
 ogmo-io:
   stage: deploy
-  image: $PYTHON_NODEJS
   script:
     - echo "Deploy ogmo-io"
     - CI=false
@@ -43,7 +39,6 @@ verify-ogmo-io:
 
 dev-ogmo-io:
   stage: deploy
-  #image: $PYTHON_NODEJS
   script:
     - echo "Deploy dev-ogmo-io"
     - CI=false
